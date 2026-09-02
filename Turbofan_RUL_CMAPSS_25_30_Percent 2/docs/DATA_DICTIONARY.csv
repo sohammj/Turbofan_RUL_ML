@@ -1,0 +1,37 @@
+position,column,category,data_type,unit_or_scale,description,allowed_as_predictor
+1,unit_id,identifier,integer,none,Engine trajectory ID within one FD subset,no
+2,cycle,time_index,integer,cycles,Sequential observed cycle,yes_with_care
+3,op_setting_1,operating_setting,float,undisclosed,Operating condition setting 1,yes
+4,op_setting_2,operating_setting,float,undisclosed,Operating condition setting 2,yes
+5,op_setting_3,operating_setting,float,undisclosed,Operating condition setting 3,yes
+6,sensor_1,sensor,float,undisclosed,Simulated noisy sensor channel 1,yes_if_retained
+7,sensor_2,sensor,float,undisclosed,Simulated noisy sensor channel 2,yes_if_retained
+8,sensor_3,sensor,float,undisclosed,Simulated noisy sensor channel 3,yes_if_retained
+9,sensor_4,sensor,float,undisclosed,Simulated noisy sensor channel 4,yes_if_retained
+10,sensor_5,sensor,float,undisclosed,Simulated noisy sensor channel 5,yes_if_retained
+11,sensor_6,sensor,float,undisclosed,Simulated noisy sensor channel 6,yes_if_retained
+12,sensor_7,sensor,float,undisclosed,Simulated noisy sensor channel 7,yes_if_retained
+13,sensor_8,sensor,float,undisclosed,Simulated noisy sensor channel 8,yes_if_retained
+14,sensor_9,sensor,float,undisclosed,Simulated noisy sensor channel 9,yes_if_retained
+15,sensor_10,sensor,float,undisclosed,Simulated noisy sensor channel 10,yes_if_retained
+16,sensor_11,sensor,float,undisclosed,Simulated noisy sensor channel 11,yes_if_retained
+17,sensor_12,sensor,float,undisclosed,Simulated noisy sensor channel 12,yes_if_retained
+18,sensor_13,sensor,float,undisclosed,Simulated noisy sensor channel 13,yes_if_retained
+19,sensor_14,sensor,float,undisclosed,Simulated noisy sensor channel 14,yes_if_retained
+20,sensor_15,sensor,float,undisclosed,Simulated noisy sensor channel 15,yes_if_retained
+21,sensor_16,sensor,float,undisclosed,Simulated noisy sensor channel 16,yes_if_retained
+22,sensor_17,sensor,float,undisclosed,Simulated noisy sensor channel 17,yes_if_retained
+23,sensor_18,sensor,float,undisclosed,Simulated noisy sensor channel 18,yes_if_retained
+24,sensor_19,sensor,float,undisclosed,Simulated noisy sensor channel 19,yes_if_retained
+25,sensor_20,sensor,float,undisclosed,Simulated noisy sensor channel 20,yes_if_retained
+26,sensor_21,sensor,float,undisclosed,Simulated noisy sensor channel 21,yes_if_retained
+derived,dataset_id,identifier,string,none,FD subset ID,optional
+derived,observed_last_cycle,metadata,integer,cycles,Last supplied cycle for the trajectory,no
+derived,true_failure_cycle,target_metadata,integer,cycles,Derived simulated failure cycle,no
+derived,RUL,target,integer,cycles,Uncapped remaining useful life,no_target_only
+derived,RUL_capped_125,target,integer,cycles,Optional RUL capped at 125 cycles,no_target_only
+derived,rul_at_last_observation,evaluation_label,integer,cycles,Official terminal test RUL,no
+derived,is_last_observation,metadata,integer,binary,Final supplied row flag,no
+derived,sensor_N_delta_1,temporal_feature,float,train_z_score,One-cycle causal change,yes
+derived,sensor_N_rolling_mean_5,temporal_feature,float,train_z_score,Causal current-plus-four-prior mean,yes
+

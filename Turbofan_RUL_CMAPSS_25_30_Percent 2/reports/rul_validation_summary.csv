@@ -1,0 +1,9 @@
+dataset_id,check,expected_engine_rows,observed_engine_rows,passed
+FD001,training_terminal_rul_is_zero,100,100,True
+FD001,test_terminal_rul_matches_official_vector,100,100,True
+FD002,training_terminal_rul_is_zero,260,260,True
+FD002,test_terminal_rul_matches_official_vector,259,259,True
+FD003,training_terminal_rul_is_zero,100,100,True
+FD003,test_terminal_rul_matches_official_vector,100,100,True
+FD004,training_terminal_rul_is_zero,249,249,True
+FD004,test_terminal_rul_matches_official_vector,248,248,True

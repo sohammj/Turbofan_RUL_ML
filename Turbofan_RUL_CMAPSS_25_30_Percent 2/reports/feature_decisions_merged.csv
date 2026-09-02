@@ -1,0 +1,22 @@
+feature,merged_decision,flagged_in_subsets,reason
+sensor_1,drop,"FD001,FD003",union rule: flagged in at least one training subset
+sensor_2,retain,,not flagged in any training subset
+sensor_3,retain,,not flagged in any training subset
+sensor_4,retain,,not flagged in any training subset
+sensor_5,drop,"FD001,FD003",union rule: flagged in at least one training subset
+sensor_6,drop,FD001,union rule: flagged in at least one training subset
+sensor_7,retain,,not flagged in any training subset
+sensor_8,retain,,not flagged in any training subset
+sensor_9,retain,,not flagged in any training subset
+sensor_10,drop,FD001,union rule: flagged in at least one training subset
+sensor_11,retain,,not flagged in any training subset
+sensor_12,retain,,not flagged in any training subset
+sensor_13,retain,,not flagged in any training subset
+sensor_14,retain,,not flagged in any training subset
+sensor_15,retain,,not flagged in any training subset
+sensor_16,drop,"FD001,FD003",union rule: flagged in at least one training subset
+sensor_17,retain,,not flagged in any training subset
+sensor_18,drop,"FD001,FD003",union rule: flagged in at least one training subset
+sensor_19,drop,"FD001,FD003",union rule: flagged in at least one training subset
+sensor_20,retain,,not flagged in any training subset
+sensor_21,retain,,not flagged in any training subset

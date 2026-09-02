@@ -1,0 +1,85 @@
+dataset_id,feature,unique_values,dominant_value_share,minimum,maximum,mean,population_std,decision,reason
+FD001,sensor_1,1,1.00000000,518.67000000,518.67000000,518.67000000,0.00000000,drop_exact_constant,one unique training value; no within-subset predictive variation
+FD001,sensor_2,310,0.00920944,641.21000000,644.53000000,642.68093355,0.50004115,retain,sufficient training variation under the declared rule
+FD001,sensor_3,3012,0.00130871,1571.04000000,1616.91000000,1590.52311861,6.13100093,retain,sufficient training variation under the declared rule
+FD001,sensor_4,4051,0.00096941,1382.25000000,1441.49000000,1408.93378169,9.00038664,retain,sufficient training variation under the declared rule
+FD001,sensor_5,1,1.00000000,14.62000000,14.62000000,14.62000000,0.00000000,drop_exact_constant,one unique training value; no within-subset predictive variation
+FD001,sensor_6,2,0.98032088,21.60000000,21.61000000,21.60980321,0.00138895,drop_near_constant,most common training value occupies 98.03% of rows (threshold 95%)
+FD001,sensor_7,513,0.00562261,549.85000000,556.06000000,553.36771121,0.88507081,retain,sufficient training variation under the declared rule
+FD001,sensor_8,53,0.05724395,2387.90000000,2388.56000000,2388.09665164,0.07098376,retain,sufficient training variation under the declared rule
+FD001,sensor_9,6403,0.00077553,9021.73000000,9244.59000000,9065.24294072,22.08234433,retain,sufficient training variation under the declared rule
+FD001,sensor_10,1,1.00000000,1.30000000,1.30000000,1.30000000,0.00000000,drop_exact_constant,one unique training value; no within-subset predictive variation
+FD001,sensor_11,159,0.01652853,46.85000000,48.53000000,47.54116815,0.26708093,retain,sufficient training variation under the declared rule
+FD001,sensor_12,427,0.00693132,518.69000000,523.38000000,521.41347002,0.73753552,retain,sufficient training variation under the declared rule
+FD001,sensor_13,56,0.05641995,2387.88000000,2388.56000000,2388.09615239,0.07191717,retain,sufficient training variation under the declared rule
+FD001,sensor_14,6078,0.00082400,8099.94000000,8293.72000000,8143.75272212,19.07571365,retain,sufficient training variation under the declared rule
+FD001,sensor_15,1918,0.00184189,8.32490000,8.58480000,8.44214558,0.03750413,retain,sufficient training variation under the declared rule
+FD001,sensor_16,1,1.00000000,0.03000000,0.03000000,0.03000000,0.00000000,drop_exact_constant,one unique training value; no within-subset predictive variation
+FD001,sensor_17,13,0.26392322,388.00000000,400.00000000,393.21065387,1.54872549,retain,sufficient training variation under the declared rule
+FD001,sensor_18,1,1.00000000,2388.00000000,2388.00000000,2388.00000000,0.00000000,drop_exact_constant,one unique training value; no within-subset predictive variation
+FD001,sensor_19,1,1.00000000,100.00000000,100.00000000,100.00000000,0.00000000,drop_exact_constant,one unique training value; no within-subset predictive variation
+FD001,sensor_20,120,0.02350831,38.14000000,39.43000000,38.81627066,0.18074205,retain,sufficient training variation under the declared rule
+FD001,sensor_21,4745,0.00111483,22.89420000,23.61840000,23.28970536,0.10824825,retain,sufficient training variation under the declared rule
+FD002,sensor_1,6,0.25033948,445.00000000,518.67000000,472.91020704,26.38946187,retain,sufficient training variation under the declared rule
+FD002,sensor_2,1590,0.00271582,535.53000000,644.52000000,579.67239941,37.28905220,retain,sufficient training variation under the declared rule
+FD002,sensor_3,12305,0.00040923,1243.73000000,1612.88000000,1419.97101323,105.94535523,retain,sufficient training variation under the declared rule
+FD002,sensor_4,15411,0.00044644,1023.77000000,1439.23000000,1205.44202441,119.12231964,retain,sufficient training variation under the declared rule
+FD002,sensor_5,6,0.25033948,3.91000000,14.62000000,8.03198609,3.61380521,retain,sufficient training variation under the declared rule
+FD002,sensor_6,14,0.14710095,5.71000000,21.61000000,11.60074592,5.43175108,retain,sufficient training variation under the declared rule
+FD002,sensor_7,2067,0.00271582,136.80000000,555.82000000,282.60678677,146.00394817,retain,sufficient training variation under the declared rule
+FD002,sensor_8,897,0.00853811,1914.77000000,2388.39000000,2228.87918767,145.20846550,retain,sufficient training variation under the declared rule
+FD002,sensor_9,22434,0.00024182,7985.56000000,9215.66000000,8525.20083707,335.80888935,retain,sufficient training variation under the declared rule
+FD002,sensor_10,9,0.38787924,0.93000000,1.30000000,1.09496159,0.12746766,retain,sufficient training variation under the declared rule
+FD002,sensor_11,681,0.00704998,36.23000000,48.51000000,42.98517234,3.23234200,retain,sufficient training variation under the declared rule
+FD002,sensor_12,1672,0.00323667,129.12000000,523.37000000,266.06903439,137.65822660,retain,sufficient training variation under the declared rule
+FD002,sensor_13,514,0.02979966,2027.61000000,2390.48000000,2334.55725255,128.06707990,retain,sufficient training variation under the declared rule
+FD002,sensor_14,14905,0.00031623,7848.36000000,8268.50000000,8066.59768243,84.83716063,retain,sufficient training variation under the declared rule
+FD002,sensor_15,8464,0.00061385,8.33570000,11.06690000,9.32965354,0.74932852,retain,sufficient training variation under the declared rule
+FD002,sensor_16,2,0.66740453,0.02000000,0.03000000,0.02332595,0.00471143,retain,sufficient training variation under the declared rule
+FD002,sensor_17,53,0.07490839,303.00000000,399.00000000,348.30951097,27.75425728,retain,sufficient training variation under the declared rule
+FD002,sensor_18,6,0.25033948,1915.00000000,2388.00000000,2228.80635801,145.32662847,retain,sufficient training variation under the declared rule
+FD002,sensor_19,2,0.85115051,84.93000000,100.00000000,97.75683811,5.36401663,retain,sufficient training variation under the declared rule
+FD002,sensor_20,510,0.00957979,10.18000000,39.34000000,20.78929593,9.86923941,retain,sufficient training variation under the declared rule
+FD002,sensor_21,17837,0.00033483,6.01050000,23.59010000,12.47342276,5.92156013,retain,sufficient training variation under the declared rule
+FD003,sensor_1,1,1.00000000,518.67000000,518.67000000,518.67000000,0.00000000,drop_exact_constant,one unique training value; no within-subset predictive variation
+FD003,sensor_2,334,0.00914239,640.84000000,645.11000000,642.45785801,0.52302056,retain,sufficient training variation under the declared rule
+FD003,sensor_3,3358,0.00109223,1564.30000000,1615.39000000,1588.07917516,6.81028030,retain,sufficient training variation under the declared rule
+FD003,sensor_4,4383,0.00105178,1377.06000000,1441.16000000,1404.47121238,9.77298065,retain,sufficient training variation under the declared rule
+FD003,sensor_5,1,1.00000000,14.62000000,14.62000000,14.62000000,0.00000000,drop_exact_constant,one unique training value; no within-subset predictive variation
+FD003,sensor_6,17,0.49296117,21.45000000,21.61000000,21.59584102,0.01811563,retain,sufficient training variation under the declared rule
+FD003,sensor_7,1854,0.00355987,549.61000000,570.49000000,555.14380785,3.43727335,retain,sufficient training variation under the declared rule
+FD003,sensor_8,161,0.04174757,2386.90000000,2388.60000000,2388.07155461,0.15828173,retain,sufficient training variation under the declared rule
+FD003,sensor_9,7114,0.00072816,9017.98000000,9234.35000000,9064.11080906,19.97989017,retain,sufficient training variation under the declared rule
+FD003,sensor_10,4,0.88244337,1.29000000,1.32000000,1.30123180,0.00348478,retain,sufficient training variation under the declared rule
+FD003,sensor_11,170,0.01610032,46.69000000,48.44000000,47.41570672,0.30006809,retain,sufficient training variation under the declared rule
+FD003,sensor_12,1772,0.00376214,517.77000000,537.40000000,523.05087257,3.25524813,retain,sufficient training variation under the declared rule
+FD003,sensor_13,163,0.04368932,2386.93000000,2388.61000000,2388.07164320,0.15811747,retain,sufficient training variation under the declared rule
+FD003,sensor_14,6320,0.00080906,8099.68000000,8290.55000000,8144.20291626,16.50378386,retain,sufficient training variation under the declared rule
+FD003,sensor_15,3122,0.00125405,8.15630000,8.57050000,8.39617578,0.06051039,retain,sufficient training variation under the declared rule
+FD003,sensor_16,1,1.00000000,0.03000000,0.03000000,0.03000000,0.00000000,drop_exact_constant,one unique training value; no within-subset predictive variation
+FD003,sensor_17,12,0.23681230,388.00000000,399.00000000,392.56654531,1.76142288,retain,sufficient training variation under the declared rule
+FD003,sensor_18,1,1.00000000,2388.00000000,2388.00000000,2388.00000000,0.00000000,drop_exact_constant,one unique training value; no within-subset predictive variation
+FD003,sensor_19,1,1.00000000,100.00000000,100.00000000,100.00000000,0.00000000,drop_exact_constant,one unique training value; no within-subset predictive variation
+FD003,sensor_20,165,0.01852751,38.17000000,39.85000000,38.98855178,0.24885966,retain,sufficient training variation under the declared rule
+FD003,sensor_21,6440,0.00072816,22.87260000,23.95050000,23.39302404,0.14923077,retain,sufficient training variation under the declared rule
+FD004,sensor_1,6,0.25135104,445.00000000,518.67000000,472.88243547,26.43661583,retain,sufficient training variation under the declared rule
+FD004,sensor_2,1704,0.00264494,535.48000000,644.42000000,579.42005551,37.34234186,retain,sufficient training variation under the declared rule
+FD004,sensor_3,13558,0.00035919,1242.67000000,1613.00000000,1417.89660027,106.16673105,retain,sufficient training variation under the declared rule
+FD004,sensor_4,17353,0.00035919,1024.42000000,1440.77000000,1201.91535927,119.32661657,retain,sufficient training variation under the declared rule
+FD004,sensor_5,6,0.25135104,3.91000000,14.62000000,8.03162582,3.62284254,retain,sufficient training variation under the declared rule
+FD004,sensor_6,46,0.09366684,5.67000000,21.61000000,11.58945713,5.44397210,retain,sufficient training variation under the declared rule
+FD004,sensor_7,5926,0.00191024,136.17000000,570.81000000,283.32863312,146.87901048,retain,sufficient training variation under the declared rule
+FD004,sensor_8,1038,0.00778788,1914.72000000,2388.64000000,2228.68603373,145.34705635,retain,sufficient training variation under the declared rule
+FD004,sensor_9,25297,0.00021225,7984.51000000,9196.81000000,8524.67330128,336.92479606,retain,sufficient training variation under the declared rule
+FD004,sensor_10,21,0.29515584,0.93000000,1.32000000,1.09644500,0.12767949,retain,sufficient training variation under the declared rule
+FD004,sensor_11,737,0.00576336,36.04000000,48.36000000,42.87452922,3.24346506,retain,sufficient training variation under the declared rule
+FD004,sensor_12,5627,0.00222044,128.31000000,537.49000000,266.73566507,138.47797870,retain,sufficient training variation under the declared rule
+FD004,sensor_13,483,0.02628614,2027.57000000,2390.49000000,2334.42758967,128.19681271,retain,sufficient training variation under the declared rule
+FD004,sensor_14,15938,0.00029388,7845.78000000,8261.65000000,8067.81181211,85.66984408,retain,sufficient training variation under the declared rule
+FD004,sensor_15,11915,0.00047348,8.17570000,11.06630000,9.28560360,0.75036756,retain,sufficient training variation under the declared rule
+FD004,sensor_16,2,0.67475387,0.02000000,0.03000000,0.02325246,0.00468467,retain,sufficient training variation under the declared rule
+FD004,sensor_17,54,0.06373982,302.00000000,399.00000000,347.76002874,27.80805644,retain,sufficient training variation under the declared rule
+FD004,sensor_18,6,0.25135104,1915.00000000,2388.00000000,2228.61328348,145.47130364,retain,sufficient training variation under the declared rule
+FD004,sensor_19,2,0.85078940,84.93000000,100.00000000,97.75139627,5.36937981,retain,sufficient training variation under the declared rule
+FD004,sensor_20,652,0.00871851,10.16000000,39.89000000,20.86433346,9.93631503,retain,sufficient training variation under the declared rule
+FD004,sensor_21,21574,0.00029388,6.08430000,23.88520000,12.51899549,5.96264857,retain,sufficient training variation under the declared rule
