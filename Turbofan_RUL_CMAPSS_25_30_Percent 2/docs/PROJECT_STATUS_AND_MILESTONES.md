@@ -17,3 +17,7 @@ At audit time the working tree already contained user changes to `src/cmapss_pip
 5. **Final package:** document methods, exact commands, data provenance, plots, results, limitations, and a concise college presentation.
 
 Each completed stage should have a focused commit and a push to the configured GitHub remote. The commit message and report should identify what changed and which checks passed.
+
+## Completion update on 29 September 2026
+
+EDA, engine-wise classical-model validation, official held-out evaluation for all four subsets, and error analysis are now present. A draft research report is present, but the course submission is **not complete**: faculty approval and implementation of a selected journal/IEEE paper have not been established. The reproducible baseline results are in `reports/eda/` and `reports/modeling/`. See `docs/COURSE_SCOPE_AND_PAPER_REQUIREMENT.md` for the syllabus mapping and remaining requirement.

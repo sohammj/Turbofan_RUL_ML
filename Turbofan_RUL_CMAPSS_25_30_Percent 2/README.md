@@ -39,6 +39,10 @@ The pipeline is idempotent: rerunning it recreates processed/report outputs from
 
 Run `python3 run_eda.py` for EDA tables and figures. Run `python3 train_models.py --subsets FD001` for the first modeled subset, or `python3 train_models.py` for all four. The model workflow reads untouched raw data so it can split by engine before selecting sensors. It compares a median baseline, Ridge, Random Forest, and Histogram Gradient Boosting. The winner is chosen by validation RMSE at one reproducible partial-history endpoint per held-out engine, then refitted on all training engines and evaluated at the official test endpoints. See `docs/MODELING_PROTOCOL.md` for the exact boundaries and limitations.
 
+Run `python3 run_error_analysis.py` after modeling. Its measured error tables and figures are in `reports/modeling/`.
+
+For the Machine Learning course, see `docs/COURSE_SCOPE_AND_PAPER_REQUIREMENT.md`. The current model comparison uses syllabus-aligned baseline methods; a faculty-approved journal/IEEE paper implementation remains a separate requirement before course submission.
+
 ## Best files to show the professor
 
 1. `docs/PROJECT_REPORT_25_30_PERCENT.md` — problem, literature, scope, objectives, dataset, method, progress, references.
