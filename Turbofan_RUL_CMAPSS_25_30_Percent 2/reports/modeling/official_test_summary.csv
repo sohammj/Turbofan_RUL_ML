@@ -1,0 +1,2 @@
+dataset_id,model,split,engines,mae,rmse,r2,phm_score
+FD001,random_forest,official_test,100,21.208909307312595,28.68087316960021,0.5236510702541215,137810.39055937817

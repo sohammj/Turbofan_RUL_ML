@@ -19,7 +19,7 @@ This package is a reproducible college ML project milestone built from NASA's C-
 - Causal lag/delta and rolling features generated using no future cycles.
 - Subset-level and all-subset model-ready/EDA-ready CSV files exported.
 
-No predictive model has been trained in this milestone. That work belongs to the next phase.
+The original preprocessing milestone is complete. A separate, reproducible classical-modeling stage is now available in `train_models.py`; its measured results are under `reports/modeling/`.
 
 ## Run it
 
@@ -34,6 +34,10 @@ python3 -m unittest discover -s tests -v
 ```
 
 The pipeline is idempotent: rerunning it recreates processed/report outputs from the preserved raw files.
+
+## Exploratory analysis and modeling
+
+Run `python3 run_eda.py` for EDA tables and figures. Run `python3 train_models.py --subsets FD001` for the first modeled subset, or `python3 train_models.py` for all four. The model workflow reads untouched raw data so it can split by engine before selecting sensors. It compares a median baseline, Ridge, Random Forest, and Histogram Gradient Boosting. The winner is chosen by validation RMSE at one reproducible partial-history endpoint per held-out engine, then refitted on all training engines and evaluated at the official test endpoints. See `docs/MODELING_PROTOCOL.md` for the exact boundaries and limitations.
 
 ## Best files to show the professor
 

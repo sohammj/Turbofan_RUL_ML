@@ -1,0 +1,13 @@
+# Classical RUL modeling protocol
+
+Run `python3 train_models.py --subsets FD001` from the project directory. Omit `--subsets` to process FD001–FD004. The script reads the untouched NASA text files and writes validation metrics, official test predictions, official test metrics, one plot, and a machine-readable protocol per subset under `reports/modeling/`.
+
+For each subset, a fixed random seed (42) assigns 20% of **engines** to validation. No cycle from a validation engine is used to fit a model. One partial-history endpoint between 50% and 85% of each validation engine's life is selected, imitating a test engine observed before failure. The true remaining cycles at that endpoint are known from its complete training history. Constant/near-constant sensor selection uses fitting engines only. Current and previous sensor readings create one-cycle differences and five-cycle rolling means. `unit_id`, the RUL labels, true failure cycle, last-observation flags, and official test answers are excluded from predictors. The Ridge scaler is fitted inside its training pipeline.
+
+The candidates are a median baseline, Ridge regression, Random Forest, and Histogram Gradient Boosting. Validation RMSE chooses the winner; validation MAE, R², and PHM asymmetric score provide other views. The selected model is then refitted using all training engines, with sensor selection recalculated from those engines. It predicts at the last observed cycle of each official test engine. `RUL_FD00X.txt` supplies the held-out evaluation answers and has no role in model choice or fitting. MAE and RMSE are in cycles; lower values are better. The PHM score sums asymmetric penalties and therefore grows with the number of engines; compare it only on the same test set.
+
+The raw training file contains complete histories, while validation and official test predictions are made on partial histories. Training on all rows gives longer engines more rows and therefore greater weight. This is a documented baseline rather than a fully optimized estimator. Hyperparameter tuning or a different training-sampling policy must use a further engine-wise split or cross-validation; the official test answers must remain outside that search.
+
+## FD001 result from the first run
+
+The 20-engine validation selected Random Forest: MAE 21.01 cycles and RMSE 27.17 cycles. Its validation R² was −0.72, showing that this one validation slice still needs improvement. After refitting on all 100 training engines, the official 100-engine test yielded MAE 21.21 cycles, RMSE 28.68 cycles, and R² 0.52. These are actual outputs from `reports/modeling/FD001/`, not literature benchmark values. The PHM score is also recorded there. Further subsets and error analysis are separate milestones.
