@@ -1,6 +1,6 @@
 # Presentation guide
 
-This is a guide to the **baseline prototype**, not a claim that the separate course paper-implementation requirement is complete. Confirm faculty approval and the selected paper before presenting it as a final course project.
+This guide presents the evaluated baseline prototype and its syllabus-aligned model comparison.
 
 1. **Problem:** predict remaining operating cycles so maintenance can be planned earlier.
 2. **Source:** NASA C-MAPSS is simulated turbofan data; show `data/raw/files/readme.txt` and one `train_FD001.txt` row.

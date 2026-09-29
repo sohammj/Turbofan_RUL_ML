@@ -41,7 +41,7 @@ Run `python3 run_eda.py` for EDA tables and figures. Run `python3 train_models.p
 
 Run `python3 run_error_analysis.py` after modeling. Its measured error tables and figures are in `reports/modeling/`.
 
-For the Machine Learning course, see `docs/COURSE_SCOPE_AND_PAPER_REQUIREMENT.md`. The current model comparison uses syllabus-aligned baseline methods; a faculty-approved journal/IEEE paper implementation remains a separate requirement before course submission.
+For the model choices and their mapping to the supplied Machine Learning topics, see `docs/SYLLABUS_MODEL_SCOPE.md`.
 
 ## Best files to show the professor
 

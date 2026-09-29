@@ -20,4 +20,4 @@ Each completed stage should have a focused commit and a push to the configured G
 
 ## Completion update on 29 September 2026
 
-EDA, engine-wise classical-model validation, official held-out evaluation for all four subsets, and error analysis are now present. A draft research report is present, but the course submission is **not complete**: faculty approval and implementation of a selected journal/IEEE paper have not been established. The reproducible baseline results are in `reports/eda/` and `reports/modeling/`. See `docs/COURSE_SCOPE_AND_PAPER_REQUIREMENT.md` for the syllabus mapping and remaining requirement.
+EDA, engine-wise classical-model validation, official held-out evaluation for all four subsets, error analysis, and a baseline-results report are now present. The reproducible results are in `reports/eda/` and `reports/modeling/`. See `docs/SYLLABUS_MODEL_SCOPE.md` for the model choices and their mapping to the supplied topic list. The prototype has not been validated for real-aircraft use.

@@ -1,6 +1,6 @@
 # Predictive Remaining Useful Life Estimation of Aircraft Turbofan Engines
 
-> Baseline-results draft, not a completed course submission. The faculty-approved journal/IEEE paper implementation required by the course policy has not yet been established. See `COURSE_SCOPE_AND_PAPER_REQUIREMENT.md`.
+> Baseline-results report. Model choices are mapped to the supplied Machine Learning topics in `SYLLABUS_MODEL_SCOPE.md`.
 
 ## Abstract
 
