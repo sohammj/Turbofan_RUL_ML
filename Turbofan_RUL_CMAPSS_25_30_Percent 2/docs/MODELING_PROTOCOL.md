@@ -11,3 +11,7 @@ The raw training file contains complete histories, while validation and official
 ## FD001 result from the first run
 
 The 20-engine validation selected Random Forest: MAE 21.01 cycles and RMSE 27.17 cycles. Its validation R² was −0.72, showing that this one validation slice still needs improvement. After refitting on all 100 training engines, the official 100-engine test yielded MAE 21.21 cycles, RMSE 28.68 cycles, and R² 0.52. These are actual outputs from `reports/modeling/FD001/`, not literature benchmark values. The PHM score is also recorded there. Further subsets and error analysis are separate milestones.
+
+## Four-subset evaluation
+
+The identical protocol was subsequently run on FD002–FD004. The exact scores and engine-level predictions are preserved in `reports/modeling/`. FD002 and FD004 represent multiple operating conditions, while FD003 and FD004 contain two fault modes. The current one-split validation is useful for selecting an initial model but is not a substitute for repeated engine-wise cross-validation. Three of four validation R² values are below zero, so the reported official-test results should be read as benchmark outcomes for this fixed protocol, not as proof of stable performance on new fleets.
