@@ -1,8 +1,8 @@
 # Predictive Remaining Useful Life Estimation of Aircraft Turbofan Engines
 
-## First 25–30% milestone: data acquisition and preprocessing
+## Completed academic benchmark project
 
-This package is a reproducible college ML project milestone built from NASA's C-MAPSS Turbofan Engine Degradation Simulation Data Set. It contains all four subsets (FD001–FD004), untouched raw files, runnable preprocessing, RUL labels, leakage-safe scaling, causal starter features, merged files, evidence samples, data dictionaries, and project documentation.
+This package is a reproducible college ML project built from NASA's C-MAPSS Turbofan Engine Degradation Simulation Data Set. It contains all four subsets (FD001–FD004), untouched raw files, preprocessing, exploratory analysis, classical regression models, official-test evaluation, error analysis, repeated engine-wise validation, and documentation. It is an academic benchmark, not a system for real aircraft maintenance.
 
 
 ## What is complete
@@ -19,7 +19,7 @@ This package is a reproducible college ML project milestone built from NASA's C-
 - Causal lag/delta and rolling features generated using no future cycles.
 - Subset-level and all-subset model-ready/EDA-ready CSV files exported.
 
-The original preprocessing milestone is complete. A separate, reproducible classical-modeling stage is now available in `train_models.py`; its measured results are under `reports/modeling/`.
+The original preprocessing milestone and the subsequent modeling, evaluation, and robustness stages are complete. The final narrative is in `docs/FINAL_PROJECT_REPORT.md`.
 
 ## Run it
 
@@ -30,6 +30,10 @@ python3 -m venv .venv
 source .venv/bin/activate
 python3 -m pip install -r requirements.txt
 python3 run_pipeline.py
+python3 run_eda.py
+python3 train_models.py
+python3 run_error_analysis.py
+python3 run_robustness.py
 python3 -m unittest discover -s tests -v
 ```
 
@@ -41,11 +45,13 @@ Run `python3 run_eda.py` for EDA tables and figures. Run `python3 train_models.p
 
 Run `python3 run_error_analysis.py` after modeling. Its measured error tables and figures are in `reports/modeling/`.
 
+Run `python3 run_robustness.py` for a post-hoc stability audit using training trajectories only. Its repeated-split scores and plot are under `reports/robustness/`; they do not replace the original official-test models or scores. The original models' official-test RMSE values are 28.68, 27.66, 34.81, and 38.50 cycles for FD001–FD004 respectively. See `docs/ROBUSTNESS_ANALYSIS.md` for the important validation caveat.
+
 For the model choices and their mapping to the supplied Machine Learning topics, see `docs/SYLLABUS_MODEL_SCOPE.md`.
 
 ## Best files to show the professor
 
-1. `docs/PROJECT_REPORT_25_30_PERCENT.md` — problem, literature, scope, objectives, dataset, method, progress, references.
+1. `docs/FINAL_PROJECT_REPORT.md` — final problem, method, results, limitations, and references.
 2. `docs/SOURCE_PROVENANCE.md` — exact source, hashes, retrieval route, and licensing note.
 3. `notebooks/01_preprocessing_walkthrough.ipynb` — short, presentable walkthrough.
 4. `src/cmapss_pipeline.py` — full practical implementation.
@@ -54,6 +60,8 @@ For the model choices and their mapping to the supplied Machine Learning topics,
 7. `reports/feature_quality_by_subset.csv` — constant/near-constant sensor evidence.
 8. `reports/before_after/` — raw, parsed, and processed samples.
 9. `data/processed/merged/` — final merged train/test files.
+10. `reports/modeling/official_test_summary.csv` and `reports/modeling/FD001/official_test_actual_vs_predicted.png` — measured model results and an example prediction plot.
+11. `reports/robustness/repeated_validation_rmse.png` — repeated-validation stability audit.
 
 ## Folder map
 

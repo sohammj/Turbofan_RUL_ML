@@ -267,17 +267,9 @@ def write_preprocessing_summary(
     ]
     text = f"""# Preprocessing Summary
 
-
 ## Completed transformations
 
-1. Parsed the 26 whitespace-separated raw columns and assigned explicit names.
-2. Verified missing values, infinities, exact duplicates, engine-cycle key duplicates, dtypes, and contiguous cycles.
-3. Calculated training RUL as `final_cycle - current_cycle`.
-4. Mapped each official test RUL vector entry to its engine and calculated row-level test RUL as `terminal_RUL + last_observed_cycle - current_cycle`.
-5. Audited sensor variability on training data only. Exact constants and sensors whose most frequent value covers at least {NEAR_CONSTANT_DOMINANT_SHARE:.0%} of training rows are flagged.
-6. Created causal one-cycle deltas and five-cycle rolling means using the current and past observations only.
-7. Fit z-score parameters on training data only and reused those parameters for test data.
-8. Exported subset-level files plus all-subset merged files with `dataset_id` to prevent unit-ID collisions.
+The pipeline names the 26 raw fields, validates engine-cycle sequences and data quality, derives training RUL, maps the official test RUL labels, flags low-variation sensors from training data, creates causal temporal features, fits scaling parameters on training data, and exports subset and merged tables.
 
 ## Dataset output summary
 
@@ -305,9 +297,9 @@ Generated columns: `{', '.join(temporal_columns)}`. They use no future cycles. R
 - The official test RUL is attached only as an evaluation label. It must not be supplied as an input feature during modelling.
 - `observed_last_cycle`, `true_failure_cycle`, `RUL`, `RUL_capped_125`, `rul_at_last_observation`, and `is_last_observation` are label/metadata columns, not predictors.
 
-## Current boundary
+## Downstream work
 
-Completed: sourcing, provenance, schema, data-quality inspection, RUL labelling, feature flagging, causal starter features, leakage-safe scaling, merging, documentation, and export. Deferred: train/validation strategy, baseline models, hyperparameter tuning, evaluation metrics, error analysis, and deployment. This is intentionally the preprocessing-focused 25–30% milestone.
+This report covers the preprocessing stage. Model training, official-test evaluation, error analysis, and repeated engine-wise validation are documented in `docs/FINAL_PROJECT_REPORT.md`, `reports/modeling/`, and `reports/robustness/`. This academic benchmark has not been deployed for maintenance decisions.
 """
     (project_root / "reports" / "PREPROCESSING_SUMMARY.md").write_text(text, encoding="utf-8")
 
@@ -532,7 +524,10 @@ def run_pipeline(project_root: Path) -> dict:
         list((project_root / "data" / "raw").rglob("*"))
         + [project_root / "docs" / "Damage_Propagation_Modeling_2008.pdf"]
     )
-    checksum_paths = [path for path in checksum_paths if path.is_file()]
+    checksum_paths = [
+        path for path in checksum_paths
+        if path.is_file() and not any(part.startswith(".") for part in path.relative_to(project_root).parts)
+    ]
     checksum_text = "\n".join(
         f"{sha256(path)}  {path.relative_to(project_root)}" for path in checksum_paths
     ) + "\n"
@@ -549,7 +544,7 @@ def run_pipeline(project_root: Path) -> dict:
 
     manifest = {
         "project": "Predictive Remaining Useful Life (RUL) Estimation of Aircraft Turbofan Engines",
-        "milestone": "25-30% preprocessing-focused",
+        "milestone": "complete preprocessing export",
         "generated_utc": datetime.now(timezone.utc).isoformat(),
         "datasets": list(DATASET_IDS),
         "raw_schema_columns": RAW_COLUMNS,

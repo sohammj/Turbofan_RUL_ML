@@ -1,6 +1,6 @@
 # Predictive Remaining Useful Life Estimation of Aircraft Turbofan Engines
 
-> Baseline-results report. Model choices are mapped to the supplied Machine Learning topics in `SYLLABUS_MODEL_SCOPE.md`.
+> Final academic benchmark report. Model choices are mapped to the supplied Machine Learning topics in `SYLLABUS_MODEL_SCOPE.md`.
 
 ## Abstract
 
@@ -54,7 +54,11 @@ The model overestimated life for 65 of 100 FD001 engines, 150 of 259 FD002 engin
 
 ## Limitations and next research improvements
 
-The data are simulated and cover restricted fault and operating scenarios. Initial wear and degradation onset are not directly observed, and sensor noise complicates interpretation. The current protocol uses one engine-wise validation split and one partial-history endpoint per validation engine. Three validation R² values are negative. Hyperparameters and training-row weighting were not optimized; long-lived engines contribute more training rows. These choices make the results credible as reproducible **classical baselines**, but not as a deployable aircraft safety system. A strong follow-up study would use repeated group cross-validation, multiple truncation points per validation engine, calibrated uncertainty intervals, and a model-selection objective that accounts for late-prediction cost. Any such search must leave the official test labels untouched until final evaluation.
+The data are simulated and cover restricted fault and operating scenarios. Initial wear and degradation onset are not directly observed, and sensor noise complicates interpretation. The original protocol uses one engine-wise validation split and one partial-history endpoint per validation engine. Three original validation R² values are negative. Hyperparameters and training-row weighting were not optimized; long-lived engines contribute more training rows. These choices make the results credible as reproducible **classical baselines**, but not as a deployable aircraft safety system.
+
+A separate post-hoc audit uses training trajectories only, repeating an engine-wise split three times and evaluating each held-out engine at 50%, 70%, and 85% of its observed lifetime. Random Forest has the lowest mean validation RMSE for FD001 and FD002; Histogram Gradient Boosting leads FD003; Random Forest leads FD004. The mean-RMSE leader thus differs from the original official-test model for FD002 and FD004. The audit's fixed endpoints are not directly comparable with the original random-endpoint validation scores, and three repetitions do not establish confidence intervals. These findings do not change the already selected official-test models or results. See `docs/ROBUSTNESS_ANALYSIS.md` and `reports/robustness/` for the scores and figure.
+
+Future research could examine calibrated uncertainty intervals and a model-selection objective that accounts for late-prediction cost, leaving official test labels outside all tuning.
 
 ## Reproduction
 
@@ -68,10 +72,11 @@ python3 run_pipeline.py
 python3 run_eda.py
 python3 train_models.py
 python3 run_error_analysis.py
+python3 run_robustness.py
 python3 -m unittest discover -s tests -v
 ```
 
-The pipeline exports preprocessed data and reports. The EDA script exports figures and tables. The modeling script writes validation and official-test metrics, engine-level predictions, plots, and protocol files. The error-analysis script summarizes prediction errors. The nine automated tests passed for this baseline prototype on 29 September 2026. Re-running `run_pipeline.py` may refresh generated files and timestamps; inspect Git changes before committing regenerated artifacts.
+The pipeline exports preprocessed data and reports. The EDA script exports figures and tables. The modeling script writes validation and official-test metrics, engine-level predictions, plots, and protocol files. The error-analysis script summarizes prediction errors. The robustness script writes a separate repeated-validation audit using training trajectories only. Automated tests cover RUL, leakage boundaries, modeling, and delivered outputs. Re-running `run_pipeline.py` refreshes its timestamp; inspect Git changes before committing regenerated artifacts.
 
 ## References
 
