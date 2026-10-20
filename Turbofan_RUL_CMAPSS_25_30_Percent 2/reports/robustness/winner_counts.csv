@@ -1,0 +1,7 @@
+dataset_id,selected_model,wins_out_of_three
+FD001,hist_gradient_boosting,1
+FD001,random_forest,2
+FD002,hist_gradient_boosting,1
+FD002,random_forest,2
+FD003,hist_gradient_boosting,3
+FD004,random_forest,3
