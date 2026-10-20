@@ -35,6 +35,10 @@ Within each subset, a fixed-seed group split reserves 20% of training engines fo
 
 Inputs are cycle, three operational settings, retained sensors, and the causal difference/rolling features. Unit ID is used only for grouping. The label, true failure cycle, last-observation metadata, and official RUL vector are never predictors. The exact validation engine IDs, selected sensors, and winner for every subset are in each `reports/modeling/FD00X/protocol.json`.
 
+## Model candidates
+
+The median baseline predicts a constant training-set RUL and gives a minimum reference point. Ridge is a regularized multiple linear regression model; its penalty limits large coefficients, and scaling is fitted within the training pipeline. Random Forest averages many regression trees built on varied samples and feature choices. Histogram Gradient Boosting adds regression trees sequentially to correct earlier errors. All four are within the supplied Machine Learning topic list. Regression is appropriate because the target is a number of remaining cycles; logistic regression and classification accuracy are not the main measures for this target.
+
 ## Results
 
 MAE and RMSE are in cycles. Lower is better. R² can be negative when a model is worse than the mean predictor on that validation sample. The PHM asymmetric score is preserved in the CSV files; it cannot be compared directly across subsets with different engine counts.
@@ -47,6 +51,8 @@ MAE and RMSE are in cycles. Lower is better. R² can be negative when a model is
 | FD004 | Histogram Gradient Boosting | 45.19 | −0.72 | 27.72 | 38.50 | 0.50 |
 
 The full-precision values and one row per test engine are in `reports/modeling/`. The FD004 error is highest, consistent with a harder subset containing multiple operating conditions and fault modes, though the experiment alone does not establish causation. FD003's official-test result is weaker than its validation result, another sign that one validation split can mislead.
+
+The `official_test_actual_vs_predicted.png` figures for each subset plot one point per test engine. The horizontal position is true RUL and the vertical position is predicted RUL; the diagonal is a perfect prediction. Points above the diagonal overestimate remaining life, while points below it underestimate it. The `error_by_rul_band.png` figure groups engines by their true remaining cycles and shows mean absolute error, making it easier to see where mistakes are larger. These plots diagnose the models; they do not replace the engine-level score tables.
 
 ## Error analysis
 

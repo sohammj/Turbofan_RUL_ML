@@ -21,6 +21,8 @@ This package is a reproducible college ML project built from NASA's C-MAPSS Turb
 
 The original preprocessing milestone and the subsequent modeling, evaluation, and robustness stages are complete. The final narrative is in `docs/FINAL_PROJECT_REPORT.md`.
 
+The editable hand-in files are `docs/FINAL_PROJECT_REPORT.docx` and `docs/FINAL_PROJECT_PRESENTATION.pptx`. Their builders are in `scripts/`. The presentation contains eight slides and uses measured plots from `reports/`.
+
 ## Run it
 
 From this project folder:
@@ -66,7 +68,7 @@ For the model choices and their mapping to the supplied Machine Learning topics,
 ## Folder map
 
 ```text
-Turbofan_RUL_CMAPSS_25_30_Percent/
+Turbofan_RUL_CMAPSS_25_30_Percent 2/
 ├── data/
 │   ├── raw/
 │   │   ├── source_archive/CMAPSSData.zip
@@ -77,6 +79,9 @@ Turbofan_RUL_CMAPSS_25_30_Percent/
 │       └── merged/                      # merged FD001–FD004 train/test CSVs
 ├── docs/
 │   ├── PROJECT_REPORT_25_30_PERCENT.md
+│   ├── FINAL_PROJECT_REPORT.md and .docx
+│   ├── FINAL_PROJECT_PRESENTATION.pptx
+│   ├── ROBUSTNESS_ANALYSIS.md
 │   ├── DATA_DICTIONARY.md
 │   ├── DATA_DICTIONARY.csv
 │   ├── SOURCE_PROVENANCE.md
@@ -85,11 +90,13 @@ Turbofan_RUL_CMAPSS_25_30_Percent/
 ├── reports/
 │   ├── PREPROCESSING_SUMMARY.md
 │   ├── before_after/
+│   ├── eda/, modeling/, robustness/
 │   └── CSV/JSON/checksum evidence
-├── src/cmapss_pipeline.py
-├── tests/test_pipeline.py
+├── src/                             # preprocessing and modeling modules
+├── scripts/                         # editable report and deck builders
+├── tests/                           # 11 automated checks
 ├── requirements.txt
-└── run_pipeline.py
+└── run_pipeline.py, run_eda.py, train_models.py, run_error_analysis.py, run_robustness.py
 ```
 
 ## Output conventions
