@@ -10,6 +10,8 @@ This project estimates the remaining useful life (RUL) of simulated turbofan eng
 
 Maintenance planners would benefit from estimates of how many cycles an engine can continue to operate before a defined failure threshold. The objective here is to predict that remaining cycle count from operational settings and sensor history. The task is supervised regression. The dataset is simulated; it is an academic prognostics benchmark, not operational flight data.
 
+The deliverables are a reproducible data-quality and feature-engineering pipeline, exploratory plots, four candidate-model comparisons, held-out engine validation, one official-test evaluation per subset, error analysis, and a training-only robustness audit. The central research question is whether classical methods covered by the supplied course topics can estimate test-engine RUL from partial sensor histories without leaking future information.
+
 ## Dataset and provenance
 
 The source is NASA's C-MAPSS turbofan engine degradation simulation data, preserved in `data/raw/source_archive/CMAPSSData.zip` and as untouched text files in `data/raw/files/`. The source archive, paper, checksums, and retrieval explanation are recorded in `docs/SOURCE_PROVENANCE.md` and `reports/checksums_sha256.txt`. Each training or test row has 26 values: unit ID, cycle, three operational settings, and 21 sensors. FD001–FD004 vary in number of operating conditions and fault modes. Each subset has `train_FD00X.txt`, `test_FD00X.txt`, and `RUL_FD00X.txt`; the last is a vector of true RUL values at the test engines' final observed cycles.
@@ -65,6 +67,20 @@ The data are simulated and cover restricted fault and operating scenarios. Initi
 A separate post-hoc audit uses training trajectories only, repeating an engine-wise split three times and evaluating each held-out engine at 50%, 70%, and 85% of its observed lifetime. Random Forest has the lowest mean validation RMSE for FD001 and FD002; Histogram Gradient Boosting leads FD003; Random Forest leads FD004. The mean-RMSE leader thus differs from the original official-test model for FD002 and FD004. The audit's fixed endpoints are not directly comparable with the original random-endpoint validation scores, and three repetitions do not establish confidence intervals. These findings do not change the already selected official-test models or results. See `docs/ROBUSTNESS_ANALYSIS.md` and `reports/robustness/` for the scores and figure.
 
 Future research could examine calibrated uncertainty intervals and a model-selection objective that accounts for late-prediction cost, leaving official test labels outside all tuning.
+
+## Team presentation responsibilities
+
+The earlier group study report records the following division of explanation and demonstration for the five-person presentation. These are presentation responsibilities, not independently verified claims about who authored each file or experiment.
+
+| Member | Assigned presentation responsibility |
+| --- | --- |
+| Soham | Overall project flow, experiment integration, model-selection decision, and interpretation of final scores. |
+| Hardik | Dataset identity, 26 source fields, train-versus-test trajectories, and the RUL target. |
+| Farhaan | Data-quality checks, sensor selection, and causal time-history features. |
+| Sanjeet | Four candidate models and the FD001 validation comparison. |
+| Sparsh | FD001/FD002 official-test graphs, metrics, and limitations. |
+
+The complete technical explanation for the group is in `deliverables/TECHNICAL_EXPLAINER.md`; the original role allocation is preserved in the dated group study report in Git history.
 
 ## Reproduction
 

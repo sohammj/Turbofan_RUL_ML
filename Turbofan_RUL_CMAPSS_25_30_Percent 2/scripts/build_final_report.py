@@ -2,6 +2,7 @@
 
 from pathlib import Path
 import re
+import sys
 
 from docx import Document
 from docx.enum.table import WD_CELL_VERTICAL_ALIGNMENT
@@ -13,7 +14,7 @@ from docx.shared import Inches, Pt, RGBColor
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "docs" / "FINAL_PROJECT_REPORT.md"
-OUTPUT = ROOT / "docs" / "FINAL_PROJECT_REPORT.docx"
+OUTPUT = ROOT / "deliverables" / "FINAL_PROJECT_REPORT.docx"
 
 
 def clean(text: str) -> str:
@@ -70,7 +71,7 @@ def add_table(doc, rows: list[list[str]]) -> None:
     doc.add_paragraph().paragraph_format.space_after = Pt(1)
 
 
-def build() -> None:
+def build(source: Path = SOURCE, output: Path = OUTPUT, include_figure: bool = True) -> None:
     doc = Document()
     section = doc.sections[0]
     section.page_width = Inches(8.5)
@@ -115,7 +116,7 @@ def build() -> None:
     caption_style.font.bold = False
     caption_style.font.color.rgb = RGBColor(0, 0, 0)
 
-    lines = SOURCE.read_text(encoding="utf-8").splitlines()
+    lines = source.read_text(encoding="utf-8").splitlines()
     index = 0
     while index < len(lines):
         line = lines[index].strip()
@@ -125,6 +126,8 @@ def build() -> None:
         if line.startswith("# "):
             doc.add_paragraph(clean(line[2:]), style="Title")
         elif line.startswith("## "):
+            if source == SOURCE and line == "## Results":
+                doc.add_page_break()
             doc.add_paragraph(clean(line[3:]), style="Heading 1")
         elif line.startswith("> "):
             paragraph = doc.add_paragraph(clean(line[2:]))
@@ -160,20 +163,25 @@ def build() -> None:
             paragraph.alignment = WD_ALIGN_PARAGRAPH.LEFT
         index += 1
 
-    doc.add_paragraph("Selected validation figure", style="Heading 1")
-    figure = ROOT / "reports" / "robustness" / "repeated_validation_rmse.png"
-    doc.add_picture(str(figure), width=Inches(6.35))
-    caption = doc.add_paragraph(
-        "Mean validation RMSE across three engine-wise splits. Error bars show the standard deviation across repetitions. This post-hoc audit did not change official-test model selection."
-    )
-    caption.style = "Caption"
-    caption.paragraph_format.space_before = Pt(5)
+    if include_figure:
+        doc.add_paragraph("Selected validation figure", style="Heading 1")
+        figure = ROOT / "reports" / "robustness" / "repeated_validation_rmse.png"
+        doc.add_picture(str(figure), width=Inches(6.35))
+        caption = doc.add_paragraph(
+            "Mean validation RMSE across three engine-wise splits. Error bars show the standard deviation across repetitions. This post-hoc audit did not change official-test model selection."
+        )
+        caption.style = "Caption"
+        caption.paragraph_format.space_before = Pt(5)
 
     doc.core_properties.title = "Predictive Remaining Useful Life Estimation of Aircraft Turbofan Engines"
     doc.core_properties.subject = "Final academic machine learning project report"
-    doc.save(OUTPUT)
-    print(OUTPUT)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    doc.save(output)
+    print(output)
 
 
 if __name__ == "__main__":
-    build()
+    if len(sys.argv) == 3:
+        build(Path(sys.argv[1]), Path(sys.argv[2]), False)
+    else:
+        build()

@@ -8,8 +8,12 @@ const runtime = '/Users/soham/.cache/codex-runtimes/codex-primary-runtime/depend
 const { Presentation, PresentationFile } = await import(pathToFileURL(path.join(runtime, 'node/node_modules/@oai/artifact-tool/dist/artifact_tool.mjs')).href);
 const { finalizePresentation } = await import(pathToFileURL(path.join(skill, 'container_tools/artifact_tool_utils.mjs')).href);
 const work = path.join(project, '.presentation-build');
-const final = path.join(project, 'docs', 'FINAL_PROJECT_PRESENTATION.pptx');
+const deliverable = path.join(project, 'deliverables', 'FINAL_PROJECT_PRESENTATION.pptx');
+const buildId = Date.now();
+const final = path.join(work, 'final', `FINAL_PROJECT_PRESENTATION-${buildId}.pptx`);
 await fs.mkdir(work, { recursive: true });
+await fs.mkdir(path.dirname(final), { recursive: true });
+await fs.mkdir(path.dirname(deliverable), { recursive: true });
 
 const deck = Presentation.create({ slideSize: { width: 1280, height: 720 } });
 const navy = '#172B42';
@@ -126,6 +130,23 @@ async function image(slide, relativePath, x, y, w, h, alt) {
   text(s, 'Simulated data and late-life overestimates prevent safety claims.', 845, 508, 365, 100, 21);
 }
 
+{
+  const s = slide('Team presentation responsibilities', 'Source: dated group study report and deliverables/FINAL_PROJECT_REPORT.docx. These are assigned presentation roles, not independently verified authorship of files or experiments.');
+  const roles = [
+    ['Soham', 'Project flow, model-selection decision and scores'],
+    ['Hardik', 'Dataset, 26 fields and RUL target'],
+    ['Farhaan', 'Data cleaning and causal sensor features'],
+    ['Sanjeet', 'Candidate models and FD001 validation'],
+    ['Sparsh', 'FD001/FD002 prediction plots and limitations'],
+  ];
+  roles.forEach(([name, role], index) => {
+    const y = 166 + index * 92;
+    text(s, name, 84, y, 240, 50, 27, true, navy);
+    text(s, role, 338, y, 840, 65, 23, false, gray);
+  });
+  text(s, 'Presentation split from the earlier group study report', 84, 634, 1090, 32, 18);
+}
+
 const candidate = path.join(work, 'candidate.pptx');
 await (await PresentationFile.exportPptx(deck)).save(candidate);
 const result = await finalizePresentation({
@@ -136,15 +157,16 @@ const result = await finalizePresentation({
   integrityValidatorPath: path.join(skill, 'container_tools/inspect_presentation_package_integrity.py'),
   layoutValidatorPath: path.join(skill, 'container_tools/inspect_presentation_layout_geometry.py'),
   layoutArgs: ['--expected-slide-size-emu', '12192000,6858000', '--validate-heading-fit'],
-  explicitTotalSlideCount: 8,
+  explicitTotalSlideCount: 9,
   requiredNativeTableOwnerSlides: [],
   requiredNativeChartOwnerSlides: [],
   fontPolicy: { basis: 'design', families: ['Aptos'] },
   verifyArtifactToolImport: true,
-  receiptPath: path.join(work, 'validation.json'),
+  receiptPath: path.join(work, `validation-${buildId}.json`),
 });
+await fs.copyFile(final, deliverable);
 for (const [index, s] of deck.slides.items.entries()) {
   const png = await deck.export({ slide: s, format: 'png', scale: 1 });
   await fs.writeFile(path.join(work, `slide-${String(index + 1).padStart(2, '0')}.png`), new Uint8Array(await png.arrayBuffer()));
 }
-console.log(JSON.stringify({ final, result }, null, 2));
+console.log(JSON.stringify({ deliverable, result }, null, 2));
