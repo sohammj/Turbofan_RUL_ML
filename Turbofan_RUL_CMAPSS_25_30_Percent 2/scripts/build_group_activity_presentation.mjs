@@ -8,8 +8,8 @@ const runtime = '/Users/soham/.cache/codex-runtimes/codex-primary-runtime/depend
 const { Presentation, PresentationFile } = await import(pathToFileURL(path.join(runtime, 'node/node_modules/@oai/artifact-tool/dist/artifact_tool.mjs')).href);
 const { finalizePresentation } = await import(pathToFileURL(path.join(skill, 'container_tools/artifact_tool_utils.mjs')).href);
 const work = path.join(project, '.presentation-build', 'group-activity');
-const output = path.join(project, 'deliverables', 'GROUP_ACTIVITY_PRESENTATION_DRAFT.pptx');
-const staged = path.join(work, 'final', `GROUP_ACTIVITY_PRESENTATION_DRAFT-${Date.now()}.pptx`);
+const output = path.join(project, 'deliverables', 'FINAL_ML_PRESENTATION.pptx');
+const staged = path.join(work, 'final', `FINAL_ML_PRESENTATION-${Date.now()}.pptx`);
 await fs.mkdir(path.dirname(staged), { recursive: true });
 await fs.mkdir(path.dirname(output), { recursive: true });
 
@@ -63,7 +63,7 @@ function row(s, cells, y, widths, sizes, bold = false, color = copy) {
   text(s, 'Machine Learning Group Activity Presentation', 72, 323, 1110, 45, 27, false, accent);
   text(s, 'B Tech Computer Science and Engineering Data Science  |  Semester V', 72, 425, 1120, 65, 22, false, copy);
   text(s, 'Mentor: Abhay Kolhe', 72, 520, 1050, 38, 22, false, muted);
-  s.speakerNotes.text = 'Based on the group activity report draft. Team name, course code, year, date, and roll numbers remain to be completed before final submission.';
+  s.speakerNotes.text = 'Based on deliverables/FINAL_ML_REPORT.docx, supplied by the group. Team name, course code, academic year and submission date remain unfilled in the report. Farhaan and Sanjeet roll numbers are also blank.';
 }
 
 {
@@ -217,20 +217,20 @@ function row(s, cells, y, widths, sizes, bold = false, color = copy) {
 }
 
 {
-  const s = slide('Proposed group contribution split', 'Source: GROUP_ACTIVITY_REPORT_SOURCE.md, Declaration and individual contribution table. These roles are proposed and require member confirmation before a signed declaration.');
+  const s = slide('Group contribution assignment', 'Source: deliverables/FINAL_ML_REPORT.docx, Declaration and individual contribution table. This slide reproduces the updated report assignment. The report still describes the allocation as proposed and requires member confirmation before submission.');
   const roles = [
-    ['Soham', 'Project integration, protocol, result interpretation and report coordination'],
-    ['Hardik', 'Data provenance, raw structure and EDA interpretation'],
-    ['Farhaan', 'Data quality, RUL labels and feature engineering'],
-    ['Sanjeet', 'Model comparison, validation and reproducibility'],
-    ['Sparsh', 'Official test, plots, error analysis and presentation figures'],
+    ['Farhaan', 'Data quality, preprocessing, RUL label checks, and causal feature engineering.'],
+    ['Sanjeet', 'Candidate model explanation, validation comparison, experiment protocol and reproducibility checks.'],
+    ['Sparsh', 'Official-test evaluation, prediction plots, error analysis, limitations, and presentation figures.'],
+    ['Soham', 'Project integration, model training, final result interpretation, and report coordination.'],
+    ['Hardik', 'Dataset provenance, data dictionary, raw data inspection, and EDA interpretation.'],
   ];
   roles.forEach(([name, role], i) => {
     const y = 154 + i * 92;
     text(s, name, 80, y, 230, 48, 27, true, ink);
     text(s, role, 310, y, 880, 65, 22);
   });
-  text(s, 'Confirm actual work and fill roll numbers before submission.', 80, 632, 1100, 38, 19, false, muted);
+  text(s, 'Confirm actual work and fill missing roll numbers before submission.', 80, 632, 1100, 38, 19, false, muted);
 }
 
 const candidate = path.join(work, 'candidate.pptx');
@@ -248,7 +248,7 @@ const result = await finalizePresentation({
   requiredNativeChartOwnerSlides: [],
   fontPolicy: { basis: 'design', families: ['Aptos'] },
   verifyArtifactToolImport: true,
-  receiptPath: path.join(work, 'validation.json'),
+  receiptPath: path.join(work, `validation-${Date.now()}.json`),
 });
 await fs.copyFile(staged, output);
 for (const [index, s] of deck.slides.items.entries()) {
