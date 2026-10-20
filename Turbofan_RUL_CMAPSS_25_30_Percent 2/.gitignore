@@ -1,4 +1,7 @@
 .presentation-build/
+.docx-preview/
+.local-archive/
+data/processed/
 .DS_Store
 __pycache__/
 *.py[cod]

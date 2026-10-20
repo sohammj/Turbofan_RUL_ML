@@ -19,9 +19,11 @@ This package is a reproducible college ML project built from NASA's C-MAPSS Turb
 - Causal lag/delta and rolling features generated using no future cycles.
 - Subset-level and all-subset model-ready/EDA-ready CSV files exported.
 
-The original preprocessing milestone and the subsequent modeling, evaluation, and robustness stages are complete. The final narrative is in `docs/FINAL_PROJECT_REPORT.md`.
+The preprocessing, modeling, evaluation, and robustness stages are complete. The final narrative source is in `docs/FINAL_PROJECT_REPORT.md`.
 
-The editable hand-in files are `docs/FINAL_PROJECT_REPORT.docx` and `docs/FINAL_PROJECT_PRESENTATION.pptx`. Their builders are in `scripts/`. The presentation contains eight slides and uses measured plots from `reports/`.
+The current editable hand-in files are grouped in `deliverables/`: `FINAL_PROJECT_REPORT.docx`, `FINAL_PROJECT_PRESENTATION.pptx`, and `TECHNICAL_EXPLAINER.docx`. The explainer's editable source is also there as Markdown. The presentation has nine slides and uses measured plots from `reports/`.
+
+The original NASA files are in `data/raw/` and must stay unchanged. Generated CSV exports are in `data/processed/` on the local machine; they are excluded from GitHub because they are large and can be rebuilt by `run_pipeline.py`. The small evidence tables and graphs in `reports/` remain versioned. Previous milestone hand-ins are saved locally in `.local-archive/` and remain recoverable from Git history.
 
 ## Run it
 
@@ -53,17 +55,14 @@ For the model choices and their mapping to the supplied Machine Learning topics,
 
 ## Best files to show the professor
 
-1. `docs/FINAL_PROJECT_REPORT.md` — final problem, method, results, limitations, and references.
-2. `docs/SOURCE_PROVENANCE.md` — exact source, hashes, retrieval route, and licensing note.
-3. `notebooks/01_preprocessing_walkthrough.ipynb` — short, presentable walkthrough.
-4. `src/cmapss_pipeline.py` — full practical implementation.
-5. `reports/PREPROCESSING_SUMMARY.md` — automatically generated evidence and actual counts.
-6. `reports/data_quality_summary.csv` — missing/duplicate/type checks.
-7. `reports/feature_quality_by_subset.csv` — constant/near-constant sensor evidence.
-8. `reports/before_after/` — raw, parsed, and processed samples.
-9. `data/processed/merged/` — final merged train/test files.
-10. `reports/modeling/official_test_summary.csv` and `reports/modeling/FD001/official_test_actual_vs_predicted.png` — measured model results and an example prediction plot.
-11. `reports/robustness/repeated_validation_rmse.png` — repeated-validation stability audit.
+1. `deliverables/FINAL_PROJECT_REPORT.docx` and `deliverables/FINAL_PROJECT_PRESENTATION.pptx` — final hand-in report and deck.
+2. `deliverables/TECHNICAL_EXPLAINER.docx` — detailed dataset, EDA, feature engineering, models, metrics, and figure explanations.
+3. `docs/SOURCE_PROVENANCE.md` — exact source, hashes, and retrieval route.
+4. `notebooks/01_preprocessing_walkthrough.ipynb` and `src/cmapss_pipeline.py` — walkthrough and implementation.
+5. `reports/PREPROCESSING_SUMMARY.md`, `reports/data_quality_summary.csv`, and `reports/feature_quality_by_subset.csv` — preprocessing evidence.
+6. `reports/before_after/` — small samples for showing original versus processed rows.
+7. `reports/modeling/official_test_summary.csv` and `reports/modeling/FD001/official_test_actual_vs_predicted.png` — measured results and example plot.
+8. `reports/robustness/repeated_validation_rmse.png` — stability audit.
 
 ## Folder map
 
@@ -73,21 +72,20 @@ Turbofan_RUL_CMAPSS_25_30_Percent 2/
 │   ├── raw/
 │   │   ├── source_archive/CMAPSSData.zip
 │   │   └── files/                       # untouched NASA TXT + README
-│   └── processed/
+│   └── processed/                        # local-only generated exports
 │       ├── by_subset/FD001...FD004/     # scaled model-ready CSVs + scalers
 │       ├── eda_ready/                   # unscaled, labelled subset CSVs
 │       └── merged/                      # merged FD001–FD004 train/test CSVs
+├── deliverables/                          # current report, explainer, slides
 ├── docs/
-│   ├── PROJECT_REPORT_25_30_PERCENT.md
-│   ├── FINAL_PROJECT_REPORT.md and .docx
-│   ├── FINAL_PROJECT_PRESENTATION.pptx
+│   ├── FINAL_PROJECT_REPORT.md             # editable report source
 │   ├── ROBUSTNESS_ANALYSIS.md
 │   ├── DATA_DICTIONARY.md
 │   ├── DATA_DICTIONARY.csv
 │   ├── SOURCE_PROVENANCE.md
 │   └── Damage_Propagation_Modeling_2008.pdf
 ├── notebooks/01_preprocessing_walkthrough.ipynb
-├── reports/
+├── reports/                               # compact, versioned evidence
 │   ├── PREPROCESSING_SUMMARY.md
 │   ├── before_after/
 │   ├── eda/, modeling/, robustness/
@@ -96,6 +94,7 @@ Turbofan_RUL_CMAPSS_25_30_Percent 2/
 ├── scripts/                         # editable report and deck builders
 ├── tests/                           # 11 automated checks
 ├── requirements.txt
+├── .local-archive/                        # older hand-ins, local only
 └── run_pipeline.py, run_eda.py, train_models.py, run_error_analysis.py, run_robustness.py
 ```
 
